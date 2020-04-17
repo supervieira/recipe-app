@@ -4,9 +4,9 @@ import style from './recipe.module.css';
 const Recipe = (props) => {
     return(
         <div className={style.recipe}>
-            <h1>{props.title}</h1>
-            <p>{props.calories}</p>
+            <h2>{props.title}</h2>
             <img src={props.image} alt={props.title}/>
+            <p>Calorie count: {Math.ceil(props.calories)}</p>
             <ul>
                 {
                     props.ingredients.map(ingredient => (
@@ -14,6 +14,7 @@ const Recipe = (props) => {
                     ))
                 }
             </ul>
+            <a href={props.url} target="_blank">Recipe here</a>
         </div>
     );
 };

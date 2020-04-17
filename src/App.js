@@ -15,7 +15,7 @@ const App = () => {
   // Search box for handleChange
   const [search, setSearch] = useState('');
   // User input for handleSubmit and API call
-  const [userInput, setUserInput] = useState('');
+  const [userInput, setUserInput] = useState('chocolate');
 
 
   useEffect(() => {
@@ -39,6 +39,7 @@ const App = () => {
     // Set our state object recipes to data.hits
     // Result: our state includes all recipes!
     setRecipes(data.hits);
+    console.log(data.hits)
   };
 
   const handleChange = (e) => {
@@ -54,35 +55,41 @@ const App = () => {
 
   return (
     <div className="App">
-      <form 
-        className="search-form" 
-        onSubmit={handleSubmit}
-      >
-        <input 
-          className="search-bar" 
-          type="text" 
-          name="" 
-          id=""
-          onChange={handleChange}
-        />
-        <button 
-          className="search-button" 
-          type="submit"
+      <div className="wrapper">
+        <h1>Pantry Diaries</h1>
+        <p>Have a craving? Pantry diaries will help you find the perfect recipe using your favourite ingredient. Type in your favourite ingredient and Voila! Your pantry is your oyster.</p>
+        <form 
+          className="search-form" 
+          onSubmit={handleSubmit}
         >
-            Submit
-        </button>
-      </form>
-
-      <div className="recipes">
-        {recipes.map(recipe => (
-          <Recipe
-            key={recipe.recipe.title}
-            title={recipe.recipe.label}
-            image={recipe.recipe.image}
-            calories={recipe.recipe.calories}
-            ingredients={recipe.recipe.ingredients}
+          <input 
+            className="search-bar" 
+            type="text" 
+            name="" 
+            id=""
+            onChange={handleChange}
+            placeholder="Type in your craving here"
           />
-        ))}
+          <button 
+            className="search-button" 
+            type="submit"
+          >
+              Feed Me
+          </button>
+        </form>
+
+        <div className="recipes">
+          {recipes.map(recipe => (
+            <Recipe
+              key={recipe.recipe.title}
+              title={recipe.recipe.label}
+              image={recipe.recipe.image}
+              calories={recipe.recipe.calories}
+              ingredients={recipe.recipe.ingredients}
+              url={recipe.recipe.url}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );
